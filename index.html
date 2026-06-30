@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LUMI — студія краси для ваших очей та образу. Корекція брів, нарощування вій, макіяж. Київ." />
+  <title>LUMI — Студія краси</title>
+
+  <!-- Google Fonts: Cormorant Garamond + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       CSS CUSTOM PROPERTIES — DESIGN TOKENS
+    ============================================= */
+    :root {
+      --cream:       #faf8f6;
+      --cream-mid:   #f3ede8;
+      --blush:       #e8c4b8;
+      --blush-dark:  #d4a090;
+      --blush-light: #f2dcd5;
+      --gold:        #c9a96e;
+      --gold-light:  #e2c898;
+      --charcoal:    #2c2c2c;
+      --charcoal-mid:#5a5a5a;
+      --charcoal-lt: #888888;
+      --white:       #ffffff;
+
+      --font-heading: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+
+      --shadow-sm:  0 2px 12px rgba(44,44,44,0.06);
+      --shadow-md:  0 8px 32px rgba(44,44,44,0.10);
+      --shadow-lg:  0 20px 60px rgba(44,44,44,0.14);
+
+      --radius-sm:  12px;
+      --radius-md:  20px;
+      --radius-lg:  28px;
+      --radius-xl:  40px;
+
+      --transition: 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =============================================
+       TYPOGRAPHY SCALE
+    ============================================= */
+    .heading-display {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      line-height: 1.05;
+    }
+
+    .heading-xl {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 9vw, 8rem);
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      line-height: 1;
+    }
+
+    .heading-lg {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: 1.15;
+    }
+
+    .heading-md {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      line-height: 1.25;
+    }
+
+    .heading-sm {
+      font-family: var(--font-heading);
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .label-caps {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* =============================================
+       LAYOUT UTILITIES
+    ============================================= */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .section {
+      padding: clamp(4rem, 10vw, 8rem) 0;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* =============================================
+       BUTTONS
+    ============================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2.25rem;
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--charcoal);
+      color: var(--white);
+      border: 2px solid var(--charcoal);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: var(--blush-dark);
+      border-color: var(--blush-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212,160,144,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.7);
+    }
+
+    .btn-outline:hover,
+    .btn-outline:focus-visible {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-blush {
+      background: var(--blush);
+      color: var(--charcoal);
+      border: 2px solid var(--blush);
+    }
+
+    .btn-blush:hover,
+    .btn-blush:focus-visible {
+      background: var(--blush-dark);
+      border-color: var(--blush-dark);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,160,144,0.45);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* =============================================
+       NAVIGATION
+    ============================================= */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem clamp(1.25rem, 5vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background var(--transition), backdrop-filter var(--transition);
+    }
+
+    .nav-scrolled {
+      background: rgba(250,248,246,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(44,44,44,0.06);
+    }
+
+    /* CSS-only scroll detection via :has — fallback safe */
+    body:has(#hero:not(:target)) .nav {
+      background: transparent;
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--white);
+      transition: color var(--transition);
+    }
+
+    .nav-scrolled .nav-logo {
+      color: var(--charcoal);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-scrolled .nav-links a {
+      color: var(--charcoal-mid);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--white);
+    }
+
+    .nav-scrolled .nav-links a:hover,
+    .nav-scrolled .nav-links a:focus-visible {
+      color: var(--charcoal);
+    }
+
+    .nav-cta {
+      padding: 0.6rem 1.5rem !important;
+      font-size: 0.75rem !important;
+      background: rgba(255,255,255,0.15) !important;
+      color: var(--white) !important;
+      border: 1.5px solid rgba(255,255,255,0.5) !important;
+      border-radius: 50px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .nav-scrolled .nav-cta {
+      background: var(--charcoal) !important;
+      color: var(--white) !important;
+      border-color: var(--charcoal) !important;
+    }
+
+    .nav-cta:hover,
+    .nav-cta:focus-visible {
+      background: var(--blush-dark) !important;
+      border-color: var(--blush-dark) !important;
+    }
+
+    /* Mobile menu toggle (CSS only) */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    .nav-scrolled .nav-hamburger span {
+      background: var(--charcoal);
+    }
+
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex; }
+
+      .nav-links-wrap {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(250,248,246,0.97);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        z-index: 99;
+      }
+
+      /* CSS-only hamburger toggle */
+      #nav-toggle { display: none; }
+
+      #nav-toggle:checked ~ .nav-links-wrap {
+        display: flex;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+        color: var(--charcoal) !important;
+      }
+
+      .nav-cta {
+        background: var(--charcoal) !important;
+        color: var(--white) !important;
+        border-color: var(--charcoal) !important;
+        padding: 0.85rem 2.5rem !important;
+        font-size: 0.85rem !important;
+      }
+
+      label[for="nav-toggle"] {
+        cursor: pointer;
+        z-index: 101;
+        position: relative;
+      }
+
+      #nav-toggle:checked ~ * label[for="nav-toggle"] span {
+        background: var(--charcoal);
+      }
+    }
+
+    /* =============================================
+       HERO SECTION
+    ============================================= */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1800&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(44,44,44,0.62) 0%,
+        rgba(44,44,44,0.38) 40%,
+        rgba(232,196,184,0.25) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 clamp(1.25rem, 5vw, 3rem);
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      color: var(--blush-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-logo {
+      font-family: var(--font-heading);
+      font-size: clamp(5rem, 18vw, 15rem);
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      color: var(--white);
+      line-height: 0.9;
+      margin-bottom: 0.3em;
+      text-shadow: 0 4px 32px rgba(0,0,0,0.2);
+    }
+
+    .hero-tagline {
+      font-family: var(--font-heading);
+      font-size: clamp(1.05rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.06em;
+      margin-bottom: 3rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5));
+      animation: scrollPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.7); }
+    }
+
+    /* =============================================
+       DIVIDER
+    ============================================= */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 0 auto;
+      max-width: 320px;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--blush);
+    }
+
+    .divider-diamond {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       INTRO STRIP
+    ============================================= */
+    .intro-strip {
+      background: var(--blush-light);
+      padding: 1.75rem 0;
+    }
+
+    .intro-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(2rem, 6vw, 5rem);
+      flex-wrap: wrap;
+    }
+
+    .intro-stat {
+      text-align: center;
+    }
+
+    .intro-stat-num {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      letter-spacing: 0.06em;
+      line-height: 1;
+    }
+
+    .intro-stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal-mid);
+      margin-top: 0.25rem;
+    }
+
+    .intro-sep {
+      width: 1px;
+      height: 40px;
+      background: var(--blush-dark);
+      opacity: 0.4;
+    }
+
+    @media (max-width: 480px) {
+      .intro-sep { display: none; }
+      .intro-strip-inner { gap: 1.5rem; }
+    }
+
+    /* =============================================
+       SERVICES SECTION
+    ============================================= */
+    #services {
+      background: var(--cream);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 2.25rem 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(232,196,184,0.3);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blush) 0%, var(--gold) 100%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(232,196,184,0.7);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--blush-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.75rem;
+      transition: background var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--blush);
+    }
+
+    .service-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: var(--charcoal);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-name {
+      margin-bottom: 0.75rem;
+      color: var(--charcoal);
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--charcoal-mid);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .service-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+    }
+
+    .service-from {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--charcoal-lt);
+    }
+
+    .service-price {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      letter-spacing: 0.04em;
+    }
+
+    .service-currency {
+      font-size: 0.85rem;
+      color: var(--charcoal-mid);
+    }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+    }
+
+    /* =============================================
+       PORTFOLIO SECTION
+    ============================================= */
+    #portfolio {
+      background: var(--cream-mid);
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 6vw, 4rem);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .portfolio-item {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        transparent 30%,
+        rgba(44,44,44,0.72) 100%
+      );
+      opacity: 0;
+      transition: opacity var(--transition);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(250,248,246,0.92);
+      color: var(--charcoal);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 50px;
+    }
+
+    .portfolio-badge::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    @media (max-width: 600px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 360px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =============================================
+       MASTERS SECTION
+    ============================================= */
+    #masters {
+      background: var(--cream);
+    }
+
+    .masters-header {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    .masters-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .master-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 2rem 2.25rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(232,196,184,0.25);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .master-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .master-photo-wrap {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .master-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 4px solid var(--blush-light);
+      transition: border-color var(--transition);
+    }
+
+    .master-card:hover .master-photo {
+      border-color: var(--blush);
+    }
+
+    .master-photo-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid var(--blush);
+      opacity: 0.5;
+      transition: opacity var(--transition);
+    }
+
+    .master-card:hover .master-photo-ring {
+      opacity: 1;
+    }
+
+    .master-name {
+      margin-bottom: 0.3rem;
+      color: var(--charcoal);
+    }
+
+    .master-spec {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .master-bio {
+      font-size: 0.88rem;
+      color: var(--charcoal-mid);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .master-exp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--charcoal-mid);
+      background: var(--cream-mid);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+    }
+
+    .master-exp svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      .masters-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+      }
+    }
+
+    /* =============================================
+       BOOKING CTA SECTION
+    ============================================= */
+    #booking {
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #booking::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(232,196,184,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    #booking::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(201,169,110,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .booking-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .booking-label {
+      color: var(--blush);
+      margin-bottom: 1.25rem;
+    }
+
+    .booking-heading {
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .booking-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    .booking-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* =============================================
+       CONTACTS SECTION
+    ============================================= */
+    #contacts {
+      background: var(--cream);
+    }
+
+    .contacts-header {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 6vw, 4rem);
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.75rem;
+      border: 1px solid rgba(232,196,184,0.25);
+      box-shadow: var(--shadow-sm);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .contact-card:hover {
+      border-color: rgba(232,196,184,0.6);
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blush-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--charcoal);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--charcoal-lt);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-value {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .contact-link {
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+
+    .contact-link:hover {
+      color: var(--blush-dark);
+    }
+
+    @media (max-width: 900px) {
+      .contacts-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .contacts-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--charcoal);
+      padding: 2.5rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--white);
+    }
+
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--blush-light);
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 600px) {
+      .footer-inner { justify-content: center; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 1.25rem; }
+    }
+
+    /* =============================================
+       FLOATING TELEGRAM BUTTON
+    ============================================= */
+    .float-tg {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 200;
+      width: 58px;
+      height: 58px;
+      background: var(--blush);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(232,196,184,0.55), 0 2px 8px rgba(44,44,44,0.15);
+      cursor: pointer;
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+      border: none;
+    }
+
+    .float-tg:hover,
+    .float-tg:focus-visible {
+      background: var(--blush-dark);
+      transform: translateY(-3px) scale(1.07);
+      box-shadow: 0 10px 32px rgba(212,160,144,0.6), 0 4px 12px rgba(44,44,44,0.18);
+    }
+
+    .float-tg:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .float-tg svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--charcoal);
+    }
+
+    .float-tg-pulse {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--blush);
+      animation: pulse 2.8s ease-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.6; }
+      60% { transform: scale(1.2); opacity: 0; }
+      100% { transform: scale(1.2); opacity: 0; }
+    }
+
+    /* =============================================
+       ACCESSIBILITY & MOTION
+    ============================================= */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       NAVIGATION
+  =========================================== -->
+  <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+
+  <nav class="nav" id="navbar" aria-label="Головна навігація">
+    <a href="#hero" class="nav-logo" aria-label="LUMI — на головну">LUMI</a>
+
+    <label for="nav-toggle" class="nav-hamburger" aria-label="Відкрити меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <div class="nav-links-wrap">
+      <ul class="nav-links" role="list">
+        <li><a href="#services">Послуги</a></li>
+        <li><a href="#portfolio">Портфоліо</a></li>
+        <li><a href="#masters">Майстри</a></li>
+        <li><a href="#contacts">Контакти</a></li>
+        <li>
+          <a href="https://t.me/lumi_beauty_kyiv" class="nav-cta" target="_blank" rel="noopener noreferrer">
+            Записатись
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       HERO
+  =========================================== -->
+  <section id="hero" aria-label="Студія краси LUMI">
+    <div class="hero-bg" role="img" aria-label="Фотографія студії краси"></div>
+
+    <div class="hero-content">
+      <p class="label-caps hero-eyebrow">Студія краси — Київ</p>
+      <h1 class="hero-logo" aria-label="LUMI">LUMI</h1>
+      <p class="hero-tagline">Студія краси для ваших очей та образу</p>
+
+      <div class="hero-ctas">
+        <a href="https://t.me/lumi_beauty_kyiv" class="btn btn-blush" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.65 4.41 2 2 0 0 1 3.63 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          Записатись
+        </a>
+        <a href="#portfolio" class="btn btn-outline">
+          Переглянути роботи
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       INTRO STRIP
+  =========================================== -->
+  <div class="intro-strip" aria-label="Наші досягнення">
+    <div class="container">
+      <div class="intro-strip-inner">
+        <div class="intro-stat">
+          <div class="intro-stat-num">500+</div>
+          <div class="intro-stat-label">Задоволених клієнток</div>
+        </div>
+        <div class="intro-sep" aria-hidden="true"></div>
+        <div class="intro-stat">
+          <div class="intro-stat-num">4</div>
+          <div class="intro-stat-label">Роки досвіду</div>
+        </div>
+        <div class="intro-sep" aria-hidden="true"></div>
+        <div class="intro-stat">
+          <div class="intro-stat-num">3</div>
+          <div class="intro-stat-label">Напрями краси</div>
+        </div>
+        <div class="intro-sep" aria-hidden="true"></div>
+        <div class="intro-stat">
+          <div class="intro-stat-num">98%</div>
+          <div class="intro-stat-label">Повертаються знову</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SERVICES
+  =========================================== -->
+  <section id="services" class="section" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="services-header">
+        <p class="label-caps section-label" aria-hidden="true">Що ми робимо</p>
+        <h2 class="heading-lg" id="services-heading">Наші послуги</h2>
+        <p style="color: var(--charcoal-mid); margin-top: 1rem; font-size: 1rem; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.7;">
+          Кожна процедура — це ритуал краси, розроблений індивідуально для вас
+        </p>
+      </div>
+
+      <div class="services-grid" role="list">
+
+        <!-- Brows -->
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <!-- Eyebrow arch icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 8 C6 5, 10 4, 14 5 C18 6, 21 9, 21 9"/>
+              <path d="M5 12 C7 10, 10 9, 13 10 C16 11, 18 13, 18 13"/>
+            </svg>
+          </div>
+          <h3 class="heading-sm service-name">Корекція брів</h3>
+          <p class="service-desc">
+            Ідеальна форма, підходить саме вашому типу обличчя. Фарбування, оформлення, архітектура брів — все в одному візиті.
+          </p>
+          <div class="service-price-row">
+            <span class="service-from">від</span>
+            <span class="service-price">500</span>
+            <span class="service-currency">грн</span>
+          </div>
+        </article>
+
+        <!-- Lashes -->
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <!-- Lashes icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M2 14 C6 10, 10 8, 12 8 C14 8, 18 10, 22 14"/>
+              <line x1="5" y1="9" x2="4" y2="5"/>
+              <line x1="8" y1="7" x2="8" y2="3"/>
+              <line x1="12" y1="6.5" x2="12" y2="2.5"/>
+              <line x1="16" y1="7" x2="16" y2="3"/>
+              <line x1="19" y1="9" x2="20" y2="5"/>
+            </svg>
+          </div>
+          <h3 class="heading-sm service-name">Нарощування вій</h3>
+          <p class="service-desc">
+            Класика, 2D, 3D — оберіть свій ефект. Використовуємо сертифіковані матеріали, які не шкодять природнім віям.
+          </p>
+          <div class="service-price-row">
+            <span class="service-from">від</span>
+            <span class="service-price">700</span>
+            <span class="service-currency">грн</span>
+          </div>
+        </article>
+
+        <!-- Makeup -->
+        <article class="service-card" role="listitem">
+          <div class="service-icon" aria-hidden="true">
+            <!-- Makeup brush icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L3 14.67V21h6.33L20.84 9.39a5.5 5.5 0 0 0 0-7.78z"/>
+              <line x1="16" y1="8" x2="2" y2="22"/>
+              <line x1="17.5" y1="15" x2="9" y2="15"/>
+            </svg>
+          </div>
+          <h3 class="heading-sm service-name">Макіяж</h3>
+          <p class="service-desc">
+            Денний, вечірній, весільний. Стійкий макіяж, що підкреслює вашу природну красу і тримається увесь день.
+          </p>
+          <div class="service-price-row">
+            <span class="service-from">від</span>
+            <span class="service-price">800</span>
+            <span class="service-currency">грн</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="container" style="padding-top: 0; padding-bottom: 0;">
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PORTFOLIO
+  =========================================== -->
+  <section id="portfolio" class="section" aria-labelledby="portfolio-heading">
+    <div class="container">
+      <div class="portfolio-header">
+        <p class="label-caps section-label" aria-hidden="true">Наші роботи</p>
+        <h2 class="heading-lg" id="portfolio-heading">Портфоліо</h2>
+        <p style="color: var(--charcoal-mid); margin-top: 1rem; font-size: 1rem; max-width: 420px; margin-left: auto; margin-right: auto;">
+          Кожна робота — це маленький шедевр, створений із любов'ю
+        </p>
+      </div>
+
+      <div class="portfolio-grid" role="list" aria-label="Галерея робіт">
+
+        <div class="portfolio-item" role="listitem">
+          <img src="https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=600&q=80"
+               alt="Корекція та фарбування брів — результат роботи LUMI"
+               loading="lazy" />
+          <div class="portfolio-overlay" aria-hidden="true">
+            <span class="portfolio-badge">Брови</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item" role="listitem">
+          <img src="https://images.unsplash.com/photo-1503236823255-94609f598e71?w=600&q=80"
+               alt="Вечірній макіяж — до і після"
+               loading="lazy" />
+          <div class="portfolio-overlay" aria-hidden="true">
+            <span class="portfolio-badge">Макіяж</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item" role="listitem">
+          <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80"
+               alt="Нарощування вій класика — до і після"
+               loading="lazy" />
+          <div class="portfolio-overlay" aria-hidden="true">
+            <span class="portfolio-badge">Вії</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item" role="listitem">
+          <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600&q=80"
+               alt="Денний макіяж з акцентом на очі"
+               loading="lazy" />
+          <div class="portfolio-overlay" aria-hidden="true">
+            <span class="portfolio-badge">Макіяж</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item" role="listitem">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80"
+               alt="Архітектура брів — оформлення форми"
+               loading="lazy" />
+          <div class="portfolio-overlay" aria-hidden="true">
+            <span class="portfolio-badge">Брови</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item" role="listitem">
+          <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=600&q=80"
+               alt="Нарощування вій 2D ефект"
+               loading="lazy" />
+          <div class="portfolio-overlay" aria-hidden="true">
+            <span class="portfolio-badge">Вії</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 2.75rem;">
+        <a href="https://www.instagram.com/lumi_beauty" target="_blank" rel="noopener noreferrer"
+           class="btn btn-primary"
+           style="background: transparent; color: var(--charcoal); border-color: var(--charcoal);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          Більше в Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="container" style="padding-top: 0; padding-bottom: 0;">
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MASTERS
+  =========================================== -->
+  <section id="masters" class="section" aria-labelledby="masters-heading">
+    <div class="container">
+      <div class="masters-header">
+        <p class="label-caps section-label" aria-hidden="true">Команда LUMI</p>
+        <h2 class="heading-lg" id="masters-heading">Наші майстри</h2>
+        <p style="color: var(--charcoal-mid); margin-top: 1rem; font-size: 1rem; max-width: 460px; margin-left: auto; margin-right: auto;">
+          Професіонали своєї справи, які закохані в те, що роблять
+        </p>
+      </div>
+
+      <div class="masters-grid" role="list">
+
+        <article class="master-card" role="listitem">
+          <div class="master-photo-wrap">
+            <img class="master-photo"
+                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
+                 alt="Аліна — майстер брів та макіяжу" />
+            <div class="master-photo-ring" aria-hidden="true"></div>
+          </div>
+          <h3 class="heading-sm master-name">Аліна Коваль</h3>
+          <p class="master-spec">Брови &amp; Макіяж</p>
+          <p class="master-bio">
+            Сертифікований майстер з художньою освітою. Спеціалізується на архітектурі брів та весільному макіяжі.
+          </p>
+          <div class="master-exp">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            5 років досвіду
+          </div>
+        </article>
+
+        <article class="master-card" role="listitem">
+          <div class="master-photo-wrap">
+            <img class="master-photo"
+                 src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
+                 alt="Марина — майстер нарощування вій" />
+            <div class="master-photo-ring" aria-hidden="true"></div>
+          </div>
+          <h3 class="heading-sm master-name">Марина Іваненко</h3>
+          <p class="master-spec">Нарощування вій</p>
+          <p class="master-bio">
+            Майстер нарощування вій 2D та 3D. Пройшла навчання в Польщі та Кореї, постійно вдосконалює техніки.
+          </p>
+          <div class="master-exp">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            3 роки досвіду
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       BOOKING CTA
+  =========================================== -->
+  <section id="booking" class="section" aria-labelledby="booking-heading">
+    <div class="container">
+      <div class="booking-inner">
+        <p class="label-caps booking-label section-label" style="justify-content: center;" aria-hidden="true">Запис онлайн</p>
+        <h2 class="heading-lg booking-heading" id="booking-heading">
+          Готові до<br />
+          <em style="font-style: italic; color: var(--blush);">трансформації?</em>
+        </h2>
+        <p class="booking-sub">
+          Запишіться зараз і отримайте безкоштовну консультацію майстра. Вільні слоти оновлюються щодня.
+        </p>
+        <div class="booking-ctas">
+          <a href="https://t.me/lumi_beauty_kyiv" target="_blank" rel="noopener noreferrer"
+             class="btn"
+             style="background: var(--blush); color: var(--charcoal); border: 2px solid var(--blush);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            Записатись у Telegram
+          </a>
+          <a href="tel:+380971835642"
+             class="btn"
+             style="background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.65 4.41 2 2 0 0 1 3.63 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Подзвонити
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTACTS
+  =========================================== -->
+  <section id="contacts" class="section" aria-labelledby="contacts-heading">
+    <div class="container">
+      <div class="contacts-header">
+        <p class="label-caps section-label" aria-hidden="true">Де нас знайти</p>
+        <h2 class="heading-lg" id="contacts-heading">Контакти</h2>
+      </div>
+
+      <div class="contacts-grid" role="list">
+
+        <div class="contact-card" role="listitem">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <p class="contact-label">Адреса</p>
+          <p class="contact-value">вул. Хрещатик 12,<br />Київ, Україна</p>
+        </div>
+
+        <div class="contact-card" role="listitem">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.65 4.41 2 2 0 0 1 3.63 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <p class="contact-label">Телефон</p>
+          <a href="tel:+380971835642" class="contact-value contact-link">+38 (097) 183-56-42</a>
+        </div>
+
+        <div class="contact-card" role="listitem">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </div>
+          <p class="contact-label">Instagram</p>
+          <a href="https://www.instagram.com/lumi_beauty" target="_blank" rel="noopener noreferrer"
+             class="contact-value contact-link">@lumi_beauty</a>
+        </div>
+
+        <div class="contact-card" role="listitem">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <p class="contact-label">Графік роботи</p>
+          <p class="contact-value">Пн–Пт: 09:00–20:00<br />Сб–Нд: 10:00–18:00</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER
+  =========================================== -->
+  <footer aria-label="Підвал сайту">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">LUMI</div>
+          <div class="footer-tagline" style="margin-top: 0.4rem;">Студія краси — Київ</div>
+        </div>
+
+        <nav aria-label="Навігація підвалу">
+          <ul class="footer-links" role="list">
+            <li><a href="#services">Послуги</a></li>
+            <li><a href="#portfolio">Портфоліо</a></li>
+            <li><a href="#masters">Майстри</a></li>
+            <li><a href="#contacts">Контакти</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-copy">
+          © 2025 LUMI Studio. Всі права захищено.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       FLOATING TELEGRAM BUTTON
+  =========================================== -->
+  <a href="https://t.me/lumi_beauty_kyiv"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="float-tg"
+     aria-label="Записатися у Telegram">
+    <div class="float-tg-pulse" aria-hidden="true"></div>
+    <!-- Official Telegram logo SVG -->
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+    </svg>
+  </a>
+
+</body>
+</html>
