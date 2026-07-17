@@ -430,6 +430,15 @@
       background-repeat: no-repeat;
     }
 
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
     .hero-bg::after {
       content: '';
       position: absolute;
@@ -464,6 +473,22 @@
       line-height: 0.9;
       margin-bottom: 0.3em;
       text-shadow: 0 4px 32px rgba(0,0,0,0.2);
+    }
+
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.6rem, 6.5vw, 5rem);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      color: var(--white);
+      text-shadow: 0 4px 32px rgba(0,0,0,0.25);
+      margin-bottom: 0.5em;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--blush-light);
     }
 
     .hero-tagline {
@@ -1186,16 +1211,190 @@
       outline: 2px solid var(--gold);
       outline-offset: 3px;
     }
+    /* =============================================
+       PRICING SECTION
+    ============================================= */
+    .price-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .price-cat {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(232,196,184,0.3);
+    }
+
+    .price-cat-head {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 1.1rem;
+      letter-spacing: 0.02em;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(201,169,110,0.3);
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.55rem 0;
+      font-size: 0.92rem;
+      color: var(--charcoal-mid);
+    }
+
+    .price-name { white-space: nowrap; }
+
+    .price-dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(90,90,90,0.35);
+      margin-bottom: 4px;
+    }
+
+    .price-val {
+      white-space: nowrap;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    @media (max-width: 768px) {
+      .price-cols {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* =============================================
+       REVIEWS SECTION
+    ============================================= */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(232,196,184,0.3);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    .review-text {
+      font-size: 0.92rem;
+      color: var(--charcoal-mid);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .review-name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .review-date {
+      font-size: 0.75rem;
+      color: var(--charcoal-lt);
+      margin-top: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 768px) {
+      .reviews-grid {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+    }
+
+    /* =============================================
+       FAQ SECTION
+    ============================================= */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(232,196,184,0.3);
+      box-shadow: var(--shadow-sm);
+      padding: 1.5rem 1.75rem;
+      transition: box-shadow var(--transition);
+    }
+
+    .faq-item[open] { box-shadow: var(--shadow-md); }
+
+    .faq-item summary {
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--gold);
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+
+    .faq-item p {
+      margin-top: 1rem;
+      font-size: 0.92rem;
+      color: var(--charcoal-mid);
+      line-height: 1.75;
+    }
+
   </style>
 <meta property="og:type" content="website">
-<meta property="og:title" content="LUMI Beauty Studio — Манікюр, Брови, Вії | Запис онлайн">
-<meta property="og:description" content="Краса під ключ: манікюр, брови, вії, косметологія. Запис в Telegram, від 400₴.">
+<meta property="og:title" content="LUMI Beauty Studio — Брови, Вії, Макіяж | Запис онлайн">
+<meta property="og:description" content="Краса під ключ: брови, вії, макіяж. Запис в Telegram, від 500₴.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=630&q=90&auto=format&fit=crop">
 <meta property="og:url" content="https://wowznahidka.github.io/demo-beauty/">
 <meta property="og:locale" content="uk_UA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LUMI Beauty Studio — Манікюр, Брови, Вії | Запис онлайн">
-<meta name="twitter:description" content="Краса під ключ: манікюр, брови, вії, косметологія. Запис в Telegram, від 400₴.">
+<meta name="twitter:title" content="LUMI Beauty Studio — Брови, Вії, Макіяж | Запис онлайн">
+<meta name="twitter:description" content="Краса під ключ: брови, вії, макіяж. Запис в Telegram, від 500₴.">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=630&q=90&auto=format&fit=crop">
 <link rel="canonical" href="https://wowznahidka.github.io/demo-beauty/">
 <meta name="description" content="Сайт для салону краси: майстри, портфоліо, онлайн-запис. Від 2 500₴, за 3 дні.">
@@ -1219,8 +1418,10 @@
     <div class="nav-links-wrap">
       <ul class="nav-links" role="list">
         <li><a href="#services">Послуги</a></li>
+        <li><a href="#pricing">Ціни</a></li>
         <li><a href="#portfolio">Портфоліо</a></li>
         <li><a href="#masters">Майстри</a></li>
+        <li><a href="#reviews">Відгуки</a></li>
         <li><a href="#contacts">Контакти</a></li>
         <li>
           <a href="https://telegram.me/znahidkawow" class="nav-cta" target="_blank" rel="noopener noreferrer">
@@ -1235,12 +1436,16 @@
        HERO
   =========================================== -->
   <section id="hero" aria-label="Студія краси LUMI">
-    <div class="hero-bg" role="img" aria-label="Фотографія студії краси"></div>
+    <div class="hero-bg" role="img" aria-label="Фотографія студії краси">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1800&q=80">
+        <source src="https://videos.pexels.com/video-files/19884161/19884161-hd_1280_720_24fps.mp4" type="video/mp4">
+      </video>
+    </div>
 
     <div class="hero-content">
-      <p class="label-caps hero-eyebrow">Студія краси — Київ</p>
-      <h1 class="hero-logo" aria-label="LUMI">LUMI</h1>
-      <p class="hero-tagline">Студія краси для ваших очей та образу</p>
+      <p class="label-caps hero-eyebrow">LUMI &middot; Студія краси &mdash; Київ</p>
+      <h1 class="hero-headline">Краса, що розкриває<br><em>вашу природність</em></h1>
+      <p class="hero-tagline">Брови, вії та макіяж &mdash; результат, який хочеться показувати</p>
 
       <div class="hero-ctas">
         <a href="https://telegram.me/znahidkawow" class="btn btn-blush" target="_blank" rel="noopener noreferrer">
@@ -1369,6 +1574,60 @@
           </div>
         </article>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="container" style="padding-top: 0; padding-bottom: 0;">
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PRICING
+  =========================================== -->
+  <section id="pricing" class="section" aria-labelledby="pricing-heading">
+    <div class="container">
+      <div class="services-header">
+        <p class="label-caps section-label" aria-hidden="true">Прайс-лист</p>
+        <h2 class="heading-lg" id="pricing-heading">Ціни на послуги</h2>
+        <p style="color: var(--charcoal-mid); margin-top: 1rem; font-size: 1rem; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.7;">
+          Точна вартість залежить від складності — майстер уточнить деталі на консультації
+        </p>
+      </div>
+
+      <div class="price-cols">
+        <div class="price-cat">
+          <div class="price-cat-head">Брови</div>
+          <div class="price-row"><span class="price-name">Корекція форми</span><span class="price-dots"></span><span class="price-val">500 ₴</span></div>
+          <div class="price-row"><span class="price-name">Корекція + фарбування</span><span class="price-dots"></span><span class="price-val">650 ₴</span></div>
+          <div class="price-row"><span class="price-name">Ламінування брів</span><span class="price-dots"></span><span class="price-val">700 ₴</span></div>
+          <div class="price-row"><span class="price-name">Архітектура брів</span><span class="price-dots"></span><span class="price-val">750 ₴</span></div>
+        </div>
+        <div class="price-cat">
+          <div class="price-cat-head">Вії</div>
+          <div class="price-row"><span class="price-name">Класичне нарощування</span><span class="price-dots"></span><span class="price-val">700 ₴</span></div>
+          <div class="price-row"><span class="price-name">2D / 3D об'єм</span><span class="price-dots"></span><span class="price-val">850 ₴</span></div>
+          <div class="price-row"><span class="price-name">Ламінування вій</span><span class="price-dots"></span><span class="price-val">600 ₴</span></div>
+          <div class="price-row"><span class="price-name">Зняття нарощених вій</span><span class="price-dots"></span><span class="price-val">150 ₴</span></div>
+        </div>
+        <div class="price-cat">
+          <div class="price-cat-head">Макіяж</div>
+          <div class="price-row"><span class="price-name">Денний макіяж</span><span class="price-dots"></span><span class="price-val">800 ₴</span></div>
+          <div class="price-row"><span class="price-name">Вечірній макіяж</span><span class="price-dots"></span><span class="price-val">1100 ₴</span></div>
+          <div class="price-row"><span class="price-name">Весільний макіяж</span><span class="price-dots"></span><span class="price-val">1800 ₴</span></div>
+          <div class="price-row"><span class="price-name">Урок макіяжу</span><span class="price-dots"></span><span class="price-val">1000 ₴</span></div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Записатись та уточнити ціну
+        </a>
       </div>
     </div>
   </section>
@@ -1538,6 +1797,87 @@
     </div>
   </section>
 
+  <!-- DIVIDER -->
+  <div class="container" style="padding-top: 0; padding-bottom: 0;">
+    <div class="divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       REVIEWS
+  =========================================== -->
+  <section id="reviews" class="section" aria-labelledby="reviews-heading">
+    <div class="container">
+      <div class="services-header">
+        <p class="label-caps section-label" aria-hidden="true">Відгуки</p>
+        <h2 class="heading-lg" id="reviews-heading">Що кажуть клієнтки</h2>
+      </div>
+
+      <div class="reviews-grid" role="list">
+
+        <article class="review-card" role="listitem">
+          <div class="review-stars" aria-hidden="true">★★★★★</div>
+          <p class="review-text">"Робила архітектуру брів у Аліни — це просто інший рівень. Форма ідеально пасує обличчю і тримається довше, ніж будь-де раніше."</p>
+          <div class="review-name">Юлія П.</div>
+          <div class="review-date">3 тижні тому</div>
+        </article>
+
+        <article class="review-card" role="listitem">
+          <div class="review-stars" aria-hidden="true">★★★★★</div>
+          <p class="review-text">"Нарощування вій 2D від Марини — виглядає дуже натурально, не обсипались майже місяць. Атмосфера в студії затишна, все стерильно."</p>
+          <div class="review-name">Кароліна В.</div>
+          <div class="review-date">1 тиждень тому</div>
+        </article>
+
+        <article class="review-card" role="listitem">
+          <div class="review-stars" aria-hidden="true">★★★★★</div>
+          <p class="review-text">"Робили весільний макіяж — тримався всю церемонію і фотосесію без жодної корекції. Дуже дякую команді LUMI за терпіння і професіоналізм!"</p>
+          <div class="review-name">Оксана Т.</div>
+          <div class="review-date">2 місяці тому</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FAQ
+  =========================================== -->
+  <section id="faq" class="section" aria-labelledby="faq-heading">
+    <div class="container" style="max-width: 820px;">
+      <div class="services-header">
+        <p class="label-caps section-label" aria-hidden="true">Питання</p>
+        <h2 class="heading-lg" id="faq-heading">Часті запитання</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Як записатись на процедуру?</summary>
+          <p>Найшвидше — написати в Telegram за кнопкою «Записатись», вказати бажану процедуру і зручний час. Також можна подзвонити за номером у розділі «Контакти».</p>
+        </details>
+        <details class="faq-item">
+          <summary>Скільки триває процедура?</summary>
+          <p>Корекція брів — 40–60 хв, нарощування вій — 1.5–2.5 год залежно від об'єму, макіяж — 40–90 хв. Точний час майстер підкаже під час запису.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Що варто взяти з собою або як підготуватись?</summary>
+          <p>Спеціальної підготовки не потрібно. Для нарощування вій бажано прийти без макіяжу очей або з мінімальним. Контактні лінзи краще зняти перед процедурою.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Яка політика скасування запису?</summary>
+          <p>Про перенесення або скасування просимо попереджати щонайменше за 4 години — так ми встигнемо запропонувати вільний час іншій клієнтці.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Скільки коштують послуги?</summary>
+          <p>Ціни стартують від 500 ₴ за корекцію брів. Повний прайс — у розділі «Ціни» вище. Фінальна вартість залежить від складності та обраної техніки.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- ==========================================
        BOOKING CTA
   =========================================== -->
@@ -1649,14 +1989,16 @@
         <nav aria-label="Навігація підвалу">
           <ul class="footer-links" role="list">
             <li><a href="#services">Послуги</a></li>
+            <li><a href="#pricing">Ціни</a></li>
             <li><a href="#portfolio">Портфоліо</a></li>
             <li><a href="#masters">Майстри</a></li>
+            <li><a href="#reviews">Відгуки</a></li>
             <li><a href="#contacts">Контакти</a></li>
           </ul>
         </nav>
 
         <div class="footer-copy">
-          © 2025 LUMI Studio. Всі права захищено.
+          © 2026 LUMI Studio. Всі права захищено.
         </div>
       </div>
     </div>
