@@ -1386,7 +1386,10 @@
       line-height: 1.75;
     }
 
-  </style>
+  
+    /* scroll progress */
+    #scroll-prog{position:fixed;top:0;left:0;height:2px;width:0%;background:#e8a0b0;z-index:10000;transition:width .1s linear;pointer-events:none}
+    </style>
 <meta property="og:type" content="website">
 <meta property="og:title" content="LUMI Beauty Studio — Брови, Вії, Макіяж | Запис онлайн">
 <meta property="og:description" content="Краса під ключ: брови, вії, макіяж. Запис в Telegram, від 500₴.">
@@ -1400,6 +1403,7 @@
 <link rel="canonical" href="https://wowznahidka.github.io/demo-beauty/">
 </head>
 <body>
+  <div id="scroll-prog" aria-hidden="true"></div>
 
   <!-- ==========================================
        NAVIGATION
@@ -2316,5 +2320,13 @@ fbq('trackCustom', 'DemoView', {demo: 'beauty'});
 </script>
 <!-- /wow-demo-pixel -->
 
+  <script>
+  (function(){
+    var el=document.getElementById('scroll-prog');
+    if(!el)return;
+    function upd(){var d=document.documentElement,pct=(d.scrollTop||document.body.scrollTop)/(d.scrollHeight-d.clientHeight)*100;el.style.width=Math.min(100,pct)+'%'}
+    window.addEventListener('scroll',upd,{passive:true});
+  })();
+  </script>
 </body>
 </html>
